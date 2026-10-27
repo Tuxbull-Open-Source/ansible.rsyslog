@@ -1,35 +1,21 @@
 ---
 galaxy_info:
-#  namespace: joe-speedboat
+  namespace: tuxbull
   role_name: rsyslog
-  author: Chris Ruettimann
-  description: Ansible role to install/configure Rsyslog Clients
-  license: GPLv3
-  min_ansible_version: 2.9
-
+  author: Tuxbull-Open-Source
+  description: Install rsyslog and manage a validated forwarding action
+  license: GPL-3.0-only
+  min_ansible_version: '2.15'
   platforms:
     - name: EL
-      versions:
-        - 7
-        - 8
-        - 9
-    - name: Ubuntu
-      versions:
-        - bionic
-        - focal
-        - jammy
+      versions: ['8', '9', '10']
     - name: Debian
-      versions:
-        - stretch
-        - buster
-        - bullseye
-    - name: Alpine
-      versions:
-        - all
-
+      versions: ['bullseye', 'bookworm']
+    - name: Ubuntu
+      versions: ['focal', 'jammy', 'noble']
   galaxy_tags:
-    - system
-    - syslog
     - rsyslog
+    - syslog
+    - logging
 
 dependencies: []

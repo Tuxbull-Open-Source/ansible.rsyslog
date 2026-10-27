@@ -1,21 +1,22 @@
 ---
-- name: install rsyslog
-  apt:
+- name: Install rsyslog on Debian-family systems
+  ansible.builtin.apt:
     name: rsyslog
-    state: latest
+    state: present
+    update_cache: true
 
-- name: copy file
-  template: 
+- name: Render rsyslog forwarding configuration
+  ansible.builtin.template:
     src: rsyslog.conf.j2
     dest: "/etc/rsyslog.d/{{ rsyslog_cfg_name }}.conf"
     owner: root
     group: root
     mode: '0644'
-  register: config
+    validate: rsyslogd -N1 -f %s
+  notify: Restart rsyslog
 
-- name: enable and restart service
-  service:
+- name: Enable and start rsyslog
+  ansible.builtin.systemd:
     name: rsyslog
-    enabled: yes
-    state: restarted
-  when:  config.changed
+    enabled: true
+    state: started

@@ -1,6 +1,5 @@
 ---
-# Rsyslog config String: @@ -> tcp, @ -> udp
-rsyslog_server_cfg: "*.* @@192.168.113.152:1514"
-
-# results in: rsyslog.d/99-rsyslog_forwarder.conf
-rsyslog_cfg_name: 99-rsyslog_forwarder
+# Rsyslog action, for example '@@logs.example.invalid:1514' for TCP or
+# '@logs.example.invalid:514' for UDP. The selector is appended separately.
+rsyslog_server_cfg: '@@logs.example.invalid:1514'
+rsyslog_cfg_name: 99-rsyslog-forwarder

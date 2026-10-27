@@ -1,7 +1,9 @@
 ---
-- name: Ansible Rsyslog Client Role Test
-  hosts: all,!localhost
-  become: True
+- name: Rsyslog syntax test
+  hosts: all
+  become: true
+  gather_facts: true
   roles:
-    - joe-speedboat.rsyslog
-...
+    - role: rsyslog
+      vars:
+        rsyslog_server_cfg: '@@logs.example.invalid:1514'
